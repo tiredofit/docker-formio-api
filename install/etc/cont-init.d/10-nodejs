@@ -1,6 +1,8 @@
 #!/usr/bin/with-contenv bash
 
 ### Set Defaults
+    ADMIN_EMAIL=${ADMIN_EMAIL:-"admin@example.com"}
+    ADMIN_PASS=${ADMIN_PASS:-"password"}
     DB_PORT=${DB_PORT:-"27017"}
     DB_SECRET=${DB_SECRET:-"secret"}
     JWT_SECRET=${JWT_SECRET:-"secret"}
@@ -9,18 +11,20 @@
     MYSQL_PORT=${MYSQL_PORT:-"3306"}
     MSSQL_PORT=${MYSQL_PORT:-"1433"}
 
+    
+
 ### Sanity Check
     if [ -z ${DB_HOST} ] ; then printf "\n\nDB_HOST is not defined!\n"; exit 1; fi;
     if [ -z ${DB_NAME} ] ; then printf "\n\nDB_NAME is not defined!\n"; exit 1; fi;
 
+### Check if installed
+
   # Set DB Parameters
     jsontmp=$(mktemp)
-    
     jq '.mongo="mongodb://'$DB_HOST':'$DB_PORT'/'$DB_NAME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
     jq '.mongoSecret="'$MONGO_SECRET'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
-
     jq '.jwt .secret="'$JWT_SECRET'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
-    jq '.jwt .expiretime="'$JWT_EXPIRETIME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    jq '.jwt .expireTime="'$JWT_EXPIRETIME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
 
     if [ ! -z ${MYSQL_HOST}] ; then
 	    jq '.settings .database .mysql .host="'$MYSQL_HOST'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
