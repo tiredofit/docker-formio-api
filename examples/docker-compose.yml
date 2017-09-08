@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  
+  formio-app:
+    image: tiredofit/form-io
+    container_name: formio-app
+    ports:
+    - 3001:3001
+    - 8080:8080
+    volumes:
+    - ./data:/data
+    - ./logs:/var/log
+    environment:
+    - VIRTUAL_HOST=formio.example.com
+    - VIRTUAL_NETWORK=nginx-proxy
+    - VIRTUAL_PORT=8080
+    - LETSENCRYPT_HOST=formio.example.com
+    - LETSENCRYPT_EMAIL=email@example.com
+
+    - ZABBIX_HOSTNAME=formio-app
+
+    - DB_HOST=formio-db
+    - DB_NAME=formio
+
+    networks:
+      - proxy-tier
+    restart: always
+
+  formio-db:
+    container_name: formio-db
+    image: mongo
+    restart: unless-stopped
+    volumes:
+     - /var/local/db/lemonldap-db/mongo:/data/db
+     - ./dbbackup:/dump
+    command: mongod --smallfiles
+    networks:
+      - proxy-tier
+    environment:
+      - ZABBIX_HOSTNAME=lemonldap-db-mongo
+
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
+
