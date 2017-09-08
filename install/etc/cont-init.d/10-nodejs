@@ -1,16 +1,16 @@
 #!/usr/bin/with-contenv bash
 
 ### Set Defaults
-    DB_PORT={DB_PORT:-"27017"}
-    DB_SECRET={DB_SECRET:-"secret"}
+    DB_PORT=${DB_PORT:-"27017"}
+    DB_SECRET=${DB_SECRET:-"secret"}
 
 ### Sanity Check
     if [ -z ${DB_HOST} ] ; then printf "\n\nDB_HOST is not defined!\n"; exit 1; fi;
     if [ -z ${DB_NAME} ] ; then printf "\n\nDB_NAME is not defined!\n"; exit 1; fi;
 
   # Set DB Parameters
-    sed -i -e '/"mongo":/c\"mongo": "mongodb://$DB_HOST:$DB_PORT:$DB_NAME",' /app/config/default.json
- 	sed -i -e '/"mongoSecret":/c\"mongoSecret": "$DB_SECRET",' /app/config/default.json
+    sed -i -e '/"mongo":/c\"mongo": "mongodb://'$DB_HOST':'$DB_PORT':'$DB_NAME'",' /app/config/default.json
+ 	sed -i -e '/"mongoSecret":/c\"mongoSecret": "'$DB_SECRET'",' /app/config/default.json
 
 
 mkdir -p /tmp/state

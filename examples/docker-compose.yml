@@ -3,7 +3,7 @@ version: '2'
 services:
   
   formio-app:
-    image: tiredofit/form-io
+    image: tiredofit/formio
     container_name: formio-app
     ports:
     - 3001:3001
