@@ -88,3 +88,93 @@
    285:20170907:172805.205 agent #3 started [listener #2]
    286:20170907:172805.208 agent #4 started [listener #3]
    287:20170907:172805.210 agent #5 started [active checks #1]
+    37:20170907:193023.574 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    37:20170907:193023.574 **** Enabled features ****
+    37:20170907:193023.574 IPv6 support:          YES
+    37:20170907:193023.574 TLS support:           YES
+    37:20170907:193023.574 **************************
+    37:20170907:193023.574 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    37:20170907:193023.574 agent #0 started [main process]
+   284:20170907:193023.574 agent #1 started [collector]
+   286:20170907:193023.574 agent #3 started [listener #2]
+   287:20170907:193023.574 agent #4 started [listener #3]
+   285:20170907:193023.574 agent #2 started [listener #1]
+   288:20170907:193023.574 agent #5 started [active checks #1]
+    37:20170907:193029.560 Zabbix Agent stopped. Zabbix 3.4.1 (revision 71734).
+    39:20170907:193042.848 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    39:20170907:193042.848 **** Enabled features ****
+    39:20170907:193042.848 IPv6 support:          YES
+    39:20170907:193042.848 TLS support:           YES
+    39:20170907:193042.848 **************************
+    39:20170907:193042.848 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    39:20170907:193042.848 agent #0 started [main process]
+    50:20170907:193042.849 agent #1 started [collector]
+    52:20170907:193042.849 agent #2 started [listener #1]
+    53:20170907:193042.849 agent #3 started [listener #2]
+    54:20170907:193042.849 agent #4 started [listener #3]
+    55:20170907:193042.849 agent #5 started [active checks #1]
+    39:20170907:193214.817 Zabbix Agent stopped. Zabbix 3.4.1 (revision 71734).
+    37:20170907:193222.466 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    37:20170907:193222.466 **** Enabled features ****
+    37:20170907:193222.466 IPv6 support:          YES
+    37:20170907:193222.466 TLS support:           YES
+    37:20170907:193222.467 **************************
+    37:20170907:193222.467 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    37:20170907:193222.467 agent #0 started [main process]
+   284:20170907:193222.467 agent #1 started [collector]
+   285:20170907:193222.467 agent #2 started [listener #1]
+   286:20170907:193222.467 agent #3 started [listener #2]
+   287:20170907:193222.467 agent #4 started [listener #3]
+   288:20170907:193222.467 agent #5 started [active checks #1]
+    37:20170907:193603.392 Zabbix Agent stopped. Zabbix 3.4.1 (revision 71734).
+    38:20170907:193611.097 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    38:20170907:193611.098 **** Enabled features ****
+    38:20170907:193611.098 IPv6 support:          YES
+    38:20170907:193611.098 TLS support:           YES
+    38:20170907:193611.098 **************************
+    38:20170907:193611.098 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    38:20170907:193611.098 agent #0 started [main process]
+   284:20170907:193611.098 agent #1 started [collector]
+   285:20170907:193611.098 agent #2 started [listener #1]
+   286:20170907:193611.098 agent #3 started [listener #2]
+   288:20170907:193611.098 agent #5 started [active checks #1]
+   287:20170907:193611.098 agent #4 started [listener #3]
+    38:20170907:212540.758 Zabbix Agent stopped. Zabbix 3.4.1 (revision 71734).
+    37:20170907:212548.285 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    37:20170907:212548.285 **** Enabled features ****
+    37:20170907:212548.285 IPv6 support:          YES
+    37:20170907:212548.285 TLS support:           YES
+    37:20170907:212548.285 **************************
+    37:20170907:212548.285 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    37:20170907:212548.285 agent #0 started [main process]
+   290:20170907:212548.285 agent #2 started [listener #1]
+   291:20170907:212548.285 agent #3 started [listener #2]
+   292:20170907:212548.285 agent #4 started [listener #3]
+   289:20170907:212548.285 agent #1 started [collector]
+   293:20170907:212548.285 agent #5 started [active checks #1]
+    37:20170907:212552.344 Zabbix Agent stopped. Zabbix 3.4.1 (revision 71734).
+    38:20170907:213117.090 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    38:20170907:213117.090 **** Enabled features ****
+    38:20170907:213117.090 IPv6 support:          YES
+    38:20170907:213117.090 TLS support:           YES
+    38:20170907:213117.090 **************************
+    38:20170907:213117.090 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    38:20170907:213117.090 agent #0 started [main process]
+   298:20170907:213117.090 agent #1 started [collector]
+   299:20170907:213117.090 agent #2 started [listener #1]
+   300:20170907:213117.090 agent #3 started [listener #2]
+   301:20170907:213117.090 agent #4 started [listener #3]
+   302:20170907:213117.091 agent #5 started [active checks #1]
+    38:20170907:213434.868 Zabbix Agent stopped. Zabbix 3.4.1 (revision 71734).
+    38:20170907:213442.877 Starting Zabbix Agent [formio-app]. Zabbix 3.4.1 (revision 71734).
+    38:20170907:213442.877 **** Enabled features ****
+    38:20170907:213442.877 IPv6 support:          YES
+    38:20170907:213442.877 TLS support:           YES
+    38:20170907:213442.877 **************************
+    38:20170907:213442.877 using configuration file: /etc/zabbix/zabbix_agentd.conf
+    38:20170907:213442.877 agent #0 started [main process]
+   293:20170907:213442.878 agent #1 started [collector]
+   294:20170907:213442.878 agent #2 started [listener #1]
+   296:20170907:213442.878 agent #4 started [listener #3]
+   295:20170907:213442.878 agent #3 started [listener #2]
+   297:20170907:213442.878 agent #5 started [active checks #1]

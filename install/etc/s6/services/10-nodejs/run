@@ -15,5 +15,6 @@ fi
 echo ''
 echo '** Starting NodeJS'
 cd /app
-exec npm run version && node main.js
+#exec npm run version && node main.js
 #npm run-script start nodemon main.js
+exec node main.js

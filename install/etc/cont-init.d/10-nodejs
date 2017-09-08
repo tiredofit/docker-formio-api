@@ -3,14 +3,56 @@
 ### Set Defaults
     DB_PORT=${DB_PORT:-"27017"}
     DB_SECRET=${DB_SECRET:-"secret"}
+    JWT_SECRET=${JWT_SECRET:-"secret"}
+    JWT_EXPIRETIME=${JWT_EXPIRETIME:-"240"}
+    MAIL_TYPE=${MAIL_TYPE:-"sendgrid"}
+    MYSQL_PORT=${MYSQL_PORT:-"3306"}
+    MSSQL_PORT=${MYSQL_PORT:-"1433"}
 
 ### Sanity Check
     if [ -z ${DB_HOST} ] ; then printf "\n\nDB_HOST is not defined!\n"; exit 1; fi;
     if [ -z ${DB_NAME} ] ; then printf "\n\nDB_NAME is not defined!\n"; exit 1; fi;
 
   # Set DB Parameters
-    sed -i -e '/"mongo":/c\"mongo": "mongodb://'$DB_HOST':'$DB_PORT':'$DB_NAME'",' /app/config/default.json
- 	sed -i -e '/"mongoSecret":/c\"mongoSecret": "'$DB_SECRET'",' /app/config/default.json
+    jsontmp=$(mktemp)
+    
+    jq '.mongo="mongodb://'$DB_HOST':'$DB_PORT'/'$DB_NAME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    jq '.mongoSecret="'$MONGO_SECRET'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+
+    jq '.jwt .secret="'$JWT_SECRET'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    jq '.jwt .expiretime="'$JWT_EXPIRETIME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+
+    if [ ! -z ${MYSQL_HOST}] ; then
+	    jq '.settings .database .mysql .host="'$MYSQL_HOST'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .database .mysql .port="'$MYSQL_PORT'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json 
+	    jq '.settings .database .mysql .database="'$MYSQL_DB_NAME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .database .mysql .user="'$MYSQL_DB_USER'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .database .mysql .password="'$MYSQL_DB_PASS'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    fi
+
+    if [ ! -z ${MSSQL_HOST}] ; then
+	    jq '.settings .database .mssql .host="$'MSSQL_HOST'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .database .mssql .port="$'MSSQL_PORT'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json 
+	    jq '.settings .database .mssql .database="'$MSSQL_DB_NAME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .database .mssql .user="'$MSSQL_DB_USER'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .database .mssql .password="'$MSSQL_DB_PASS'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    fi
+
+    if [ ! -z ${MAIL_SENDGRID_API_USER}] ; then
+    	jq '.settings .email .sendgrid .auth .api_user="'$MAIL_SENDGRID_API_USER'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    	jq '.settings .email .sendgrid .auth .api_key="'$MAIL_SENDGRID_API_KEY'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    fi
+
+    if [ ! -z ${MAIL_GMAIL_USER}] ; then
+	    jq '.settings .email .gmail .auth .user="'$MAIL_GMAIL_USER'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	    jq '.settings .email .gmail .auth .pass="'$MAIL_GMAIL_PASS'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+	fi
+
+    if [ ! -z ${MAIL_MAIL_MANDRILL_API_KEY}] ; then
+	    jq '.settings .email .mandrill .auth .apiKey="'$MAIL_MANDRILL_API_KEY'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    fi
+
+
 
 
 mkdir -p /tmp/state

@@ -14,7 +14,7 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
 
 ### Install Runtime Dependencies
         apk add \
-            curl \
+            jq \
             python \
             yarn \
             && \
