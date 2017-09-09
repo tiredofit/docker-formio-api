@@ -1,11 +1,10 @@
 FROM tiredofit/nodejs:6-latest
-MAINTAINER Dave Conroy <dave at tiredofit dot ca>
+LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Install Build Dependencies
     RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
         apk update && \
         apk add --virtual build-dependencies \
-            gcc \
             git \
             g++ \
             make \
@@ -14,6 +13,7 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
 
 ### Install Runtime Dependencies
         apk add \
+            expect \
             jq \
             python \
             yarn \

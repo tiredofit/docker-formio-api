@@ -1,8 +1,8 @@
 #!/usr/bin/with-contenv bash
 
 ### Set Defaults
-    ADMIN_EMAIL=${ADMIN_EMAIL:-"admin@example.com"}
-    ADMIN_PASS=${ADMIN_PASS:-"password"}
+    export ADMIN_EMAIL=${ADMIN_EMAIL:-"admin@example.com"}
+    export ADMIN_PASS=${ADMIN_PASS:-"password"}
     DB_PORT=${DB_PORT:-"27017"}
     DB_SECRET=${DB_SECRET:-"secret"}
     JWT_SECRET=${JWT_SECRET:-"secret"}
@@ -11,7 +11,6 @@
     MYSQL_PORT=${MYSQL_PORT:-"3306"}
     MSSQL_PORT=${MYSQL_PORT:-"1433"}
 
-    
 
 ### Sanity Check
     if [ -z ${DB_HOST} ] ; then printf "\n\nDB_HOST is not defined!\n"; exit 1; fi;
@@ -56,8 +55,29 @@
 	    jq '.settings .email .mandrill .auth .apiKey="'$MAIL_MANDRILL_API_KEY'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
     fi
 
+    cat <<EOF > /tmp/install.sh
+#!/usr/bin/expect
 
+cd /app
+spawn /usr/bin/node /app/main.js
+expect "(y/N)"
+send -- "y\n"
+expect "(1)"
+send -- "1\n"
+expect "(client)"
+send -- "\n"
+expect "account"
+send -- "${ADMIN_EMAIL}\n"
+expect "account"
+send -- "${ADMIN_PASS}\n"
+expect "Install successful!"
+send -- "\003"
+exit 0
+EOF
+chmod +x /tmp/install.sh
+expect /tmp/install.sh
+rm -rf install.sh
 
 
 mkdir -p /tmp/state
-touch /tmp/state/10-nodejs-init
+touch /tmp/state/20-nodejs-init
