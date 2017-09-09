@@ -95,7 +95,7 @@ available options that can be used to customize your installation.
 | `MSSQL_HOST` | (optional) MSSQL Host e.g. `formio-mssql` |
 | `MSSQL_PORT` | (optional) MSSQL Server Port - Default `1433` |
 | `MSSQL_DB_NAME` | (optional) MSSQL DB Name - e.g. `formio-data` |
-| `MSSQL_DB_USER` |ptional) MSSQL DB UsernameName - e.g. `formio` |
+| `MSSQL_DB_USER` | (optional) MSSQL DB UsernameName - e.g. `formio` |
 | `MSSQL_DB_PASS` | (optional) MSSQL DB Password - e.g. `password` |
 
 #### Mail Options
