@@ -2,7 +2,7 @@
 
 # Introduction
 
-This will build a container for [Formio] API Server(https://www.form.io/) A form server based on NodeJS.
+This will build a container for [Formio API Server](https://www.form.io/) A form server based on NodeJS.
 
 This Container uses Alpine:edge as a base.
 Additional Components are Nginx to act as a reverse proxy.
@@ -79,7 +79,6 @@ available options that can be used to customize your installation.
 | `DB_SECRET` | MongoDB Secret - Default `secret` |
 | `JWT_SECRET` | JWT Secret - Default `secret` |
 | `JWT_EXPIRETIME` | JWT Expire Time in Seconds - Default `240` |
-
 | `MYSQL_HOST` | (optional) MySQL Host e.g. `formio-mysql` |
 | `MYSQL_PORT` | (optional) MySQL Server Port - Default `3306` |
 | `MYSQL_DB_NAME` | (optional) MySQL DB Name - e.g. `formio-data` |
@@ -91,7 +90,6 @@ available options that can be used to customize your installation.
 | `MSSQL_DB_NAME` | (optional) MSSQL DB Name - e.g. `formio-data` |
 | `MSSQL_DB_USER` |ptional) MSSQL DB UsernameName - e.g. `formio` |
 | `MSSQL_DB_PASS` | (optional) MSSQL DB Password - e.g. `password` |
-
 | `MAIL_TYPE` | How to send email - Options are `sendgrid`, `gmail`, `mandrill` - Default `sendgrid` |
 | `MAIL_USER` | Mail Username e.g. `username@example.com` |
 | `MAIL_PASS` | Mail password ` |
