@@ -65,6 +65,9 @@ Once started, visit your defined hostname or IP Address and port and login using
 
 ### Persistent Storage
 
+| Parameter | Description |
+|-----------|-------------|
+| /app      | This is where the Form Server and source resides |
 
 ### Environment Variables
 
