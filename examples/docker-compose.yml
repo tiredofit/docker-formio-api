@@ -5,13 +5,8 @@ services:
   formio-app:
     image: tiredofit/formio
     container_name: formio-app
-    ports:
-    - 8999:80
-    - 3001:3001
-    - 8080:8080
     volumes:
     - ./data:/app
-    - ./logs:/var/log
     environment:
     - VIRTUAL_HOST=formio.example.com
     - VIRTUAL_NETWORK=nginx-proxy
