@@ -8,15 +8,10 @@ done
 if [ ! -f /tmp/state/10-nginx ]; then
 
 	### Check to see if this is a new install, if yes create directories...
-	if [ ! -f /www/html/index.php ] ; then
-	   echo "** [10-nginx] Nothing in /www/html - New Installation Detected"
-	   mkdir -p /www/html
-	   touch /www/html/index.php
-	   chown nginx:www-data /www/html
-	fi
 
 	### Force Reset Permissions for Security
-	chown -R nginx:www-data /www/html
+	mkdir -p /var/log/nginx/
+	chown -R nginx /var/log/nginx/
 	mkdir -p /www/logs/nginx
 	mkdir -p /tmp/nginx
 	chown -R nginx /www/logs/nginx

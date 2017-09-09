@@ -6,40 +6,59 @@ services:
     image: tiredofit/formio
     container_name: formio-app
     ports:
+    - 8999:80
     - 3001:3001
     - 8080:8080
     volumes:
-    - ./data:/data
+    - ./data:/app
     - ./logs:/var/log
     environment:
     - VIRTUAL_HOST=formio.example.com
     - VIRTUAL_NETWORK=nginx-proxy
-    - VIRTUAL_PORT=8080
+    - VIRTUAL_PORT=80
     - LETSENCRYPT_HOST=formio.example.com
     - LETSENCRYPT_EMAIL=email@example.com
 
     - ZABBIX_HOSTNAME=formio-app
 
-    - DB_HOST=formio-db
+    - DB_HOST=formio-db-mongo
     - DB_NAME=formio
+
+    - ADMIN_EMAIL=admin@example.com
+    - ADMIN_PASS=password
 
     networks:
       - proxy-tier
     restart: always
 
-  formio-db:
-    container_name: formio-db
+  formio-db-mongo:
+    container_name: formio-db-mongo
     image: mongo
     restart: unless-stopped
     volumes:
-     - /var/local/db/lemonldap-db/mongo:/data/db
-     - ./dbbackup:/dump
+     - ./db:/data/db
     command: mongod --smallfiles
     networks:
       - proxy-tier
     environment:
-      - ZABBIX_HOSTNAME=lemonldap-db-mongo
+      - ZABBIX_HOSTNAME=formio-db-mongo
 
+  formio-db-mongo-backup:
+    container_name: formio-db-mongo-backup
+    image: tiredofit/mongodb-backup
+    links:
+     - formio-db-mongo
+    volumes:
+      - ./dbbackup:/backups
+    environment:
+      - DB_HOST=formio-db-mongo
+      - DB_DUMP_FREQ=1440
+      - DB_DUMP_BEGIN=0000
+      - DB_CLEANUP_TIME=8640
+      - MD5=TRUE
+      - COMPRESSION=GZ
+
+    restart: always
 
 networks:
   proxy-tier:

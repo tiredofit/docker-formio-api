@@ -11,12 +11,29 @@
     MYSQL_PORT=${MYSQL_PORT:-"3306"}
     MSSQL_PORT=${MYSQL_PORT:-"1433"}
 
-
 ### Sanity Check
     if [ -z ${DB_HOST} ] ; then printf "\n\nDB_HOST is not defined!\n"; exit 1; fi;
     if [ -z ${DB_NAME} ] ; then printf "\n\nDB_NAME is not defined!\n"; exit 1; fi;
 
 ### Check if installed
+
+    if [ ! -f "/app/index.js" ]; then
+        echo '** [formio] No Data Found, Creating Fresh Install'
+        apk update
+        apk add --virtual build-dependencies \
+            git \
+            g++ \
+            make \
+            musl-dev
+        mkdir -p /app
+        git clone https://github.com/formio/formio /app
+        cd /app
+        npm install
+
+        apk del --purge build-dependencies
+        rm -rf /var/cache/apk/*
+        touch /app/needs-install
+    fi
 
   # Set DB Parameters
     jsontmp=$(mktemp)
@@ -24,6 +41,10 @@
     jq '.mongoSecret="'$MONGO_SECRET'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
     jq '.jwt .secret="'$JWT_SECRET'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
     jq '.jwt .expireTime="'$JWT_EXPIRETIME'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+
+    jq '.email .type="'$MAIL_TYPE'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    jq '.email .username="'$MAIL_USER'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
+    jq '.email .password="'$MAIL_PASS'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
 
     if [ ! -z ${MYSQL_HOST}] ; then
 	    jq '.settings .database .mysql .host="'$MYSQL_HOST'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
@@ -51,11 +72,12 @@
 	    jq '.settings .email .gmail .auth .pass="'$MAIL_GMAIL_PASS'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
 	fi
 
-    if [ ! -z ${MAIL_MAIL_MANDRILL_API_KEY}] ; then
+    if [ ! -z ${MAIL_MANDRILL_API_KEY}] ; then
 	    jq '.settings .email .mandrill .auth .apiKey="'$MAIL_MANDRILL_API_KEY'"' /app/config/default.json > "$jsontmp" && mv "$jsontmp" /app/config/default.json
     fi
 
-    cat <<EOF > /tmp/install.sh
+    if [ -f "/app/needs-install" ]; then
+        cat <<EOF > /tmp/install.sh
 #!/usr/bin/expect
 
 cd /app
@@ -74,10 +96,12 @@ expect "Install successful!"
 send -- "\003"
 exit 0
 EOF
-chmod +x /tmp/install.sh
-expect /tmp/install.sh
-rm -rf install.sh
+        chmod +x /tmp/install.sh
+        expect /tmp/install.sh
+        rm -rf /tmp/install.sh
+        rm -rf /app/needs-install
+    fi
 
-
+    
 mkdir -p /tmp/state
 touch /tmp/state/20-nodejs-init
