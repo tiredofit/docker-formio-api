@@ -1,3 +1,10 @@
+## 0.5 2017-12-01 Dave Conroy <dave at tiredofit dot ca>
+
+* Switched to Debian Stretch as base
+* NodeJS 9.2
+* Now only installs API and Frontend (No additional applications)
+* Reverse Proxy Works
+
 ## 0.4 2017-09-09 Dave Conroy <dave at tiredofit dot ca>
 
 * Update README.md

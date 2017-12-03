@@ -3,6 +3,8 @@
 ### Set Defaults
     export ADMIN_EMAIL=${ADMIN_EMAIL:-"admin@example.com"}
     export ADMIN_PASS=${ADMIN_PASS:-"password"}
+    API_URL=${VIRTUAL_HOST:-"127.0.0.1"}
+    APP_URL=${VIRTUAL_HOST:-"127.0.0.1"}
     DB_PORT=${DB_PORT:-"27017"}
     DB_SECRET=${DB_SECRET:-"secret"}
     JWT_SECRET=${JWT_SECRET:-"secret"}
@@ -10,28 +12,40 @@
     MAIL_TYPE=${MAIL_TYPE:-"sendgrid"}
     MYSQL_PORT=${MYSQL_PORT:-"3306"}
     MSSQL_PORT=${MYSQL_PORT:-"1433"}
+    REVERSE_PROXY=${REVERSE_PROXY:-"true"}
+
+    if [ "$REVERSE_PROXY" = "true" ] || [ "$REVERSE_PROXY" = "TRUE" ];  then
+        URL_PREFIX=https://
+    else
+        URL_PREFIX=http://
+    fi
+    
+
 
 ### Sanity Check
     if [ -z ${DB_HOST} ] ; then printf "\n\nDB_HOST is not defined!\n"; exit 1; fi;
     if [ -z ${DB_NAME} ] ; then printf "\n\nDB_NAME is not defined!\n"; exit 1; fi;
 
 ### Check if installed
-
+    chown -R nodejs:nodejs /app 
     if [ ! -f "/app/index.js" ]; then
         echo '** [formio] No Data Found, Creating Fresh Install'
-        apk update
-        apk add --virtual build-dependencies \
+        apt-get update
+        apt-get install -y \
             git \
             g++ \
-            make \
-            musl-dev
-        mkdir -p /app
-        git clone https://github.com/formio/formio /app
+            make
+        sudo -u nodejs git clone https://github.com/formio/formio /app
         cd /app
-        npm install
+        sudo -u nodejs npm install
 
-        apk del --purge build-dependencies
-        rm -rf /var/cache/apk/*
+        apt-get purge -y \
+                git \
+                g++ \
+                make
+        apt-get -y autoremove 
+        apt-get clean 
+        rm -rf /var/lib/apt/lists/*
         touch /app/needs-install
     fi
 
@@ -97,11 +111,15 @@ send -- "\003"
 exit 0
 EOF
         chmod +x /tmp/install.sh
-        expect /tmp/install.sh
+        sudo -u nodejs expect /tmp/install.sh
         rm -rf /tmp/install.sh
         rm -rf /app/needs-install
     fi
 
+### Change URLs
+sed -i "/var APP_URL = /c\var APP_URL = '$URL_PREFIX$APP_URL';" /app/client/dist/config.js
+sed -i "/var API_URL = /c\var API_URL = '$URL_PREFIX$API_URL';" /app/client/dist/config.js
+
     
 mkdir -p /tmp/state
-touch /tmp/state/20-nodejs-init
+touch /tmp/state/10-nodejs-init

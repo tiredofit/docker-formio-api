@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+while [ ! -f /tmp/state/10-app-init ]
+do
+  sleep 1
+done
+
+if [ ! -f /tmp/state/10-app ]; then
+
+
+
+  echo 'Initialization Complete' >/tmp/state/10-app
+fi
+
+echo ''
+echo '** [formio-app] Starting Gulp'
+cd /app
+exec gulp serve

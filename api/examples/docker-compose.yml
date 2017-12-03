@@ -2,9 +2,9 @@ version: '2'
 
 services:
   
-  formio-app:
-    image: tiredofit/formio
-    container_name: formio-app
+  formio-api-app:
+    image: tiredofit/formio-api
+    container_name: formio-api-app
     volumes:
     - ./data:/app
     environment:
