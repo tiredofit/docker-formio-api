@@ -36,7 +36,8 @@ optionally the [Let's Encrypt Proxy Companion @
 https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) in 
 order to serve your pages. However, it will run just fine on it's own if you map appropriate ports.
 
-You should also have an account on Form io or have installed the companion [API server image](https://hub.docker.com/r/tiredofit/formio-api)
+You should also have an account on Form.io or have installed the companion [API server 
+image](https://hub.docker.com/r/tiredofit/formio-api)
 
 # Installation
 
@@ -80,7 +81,8 @@ available options that can be used to customize your installation.
 
 Sample App Options:
 
-* `basic`, `eventsmanager`, `formbuilder`, `formio` `gpstracker`, `humanresources`, `movie` `prizedrawing`, `salesquote`, `servicetracker` , `todo
+* `basic`, `eventsmanager`, `formbuilder`, `formio` `gpstracker`, `humanresources`, `movie` `prizedrawing`, `salesquote`, 
+`servicetracker` , `todo`
 
 ### Networking
 
