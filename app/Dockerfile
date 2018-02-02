@@ -28,5 +28,3 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Networking Configuration
     EXPOSE 3000
-
-
