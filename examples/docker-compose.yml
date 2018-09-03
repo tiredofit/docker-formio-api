@@ -6,22 +6,23 @@ services:
     image: tiredofit/formio-api
     container_name: formio-api-app
     volumes:
-    - ./data:/app
+    - ./templates:/app/templates
     environment:
     - VIRTUAL_HOST=formio.example.com
     - VIRTUAL_NETWORK=nginx-proxy
-    - VIRTUAL_PORT=80
+    - VIRTUAL_PORT=3001
     - LETSENCRYPT_HOST=formio.example.com
     - LETSENCRYPT_EMAIL=email@example.com
 
     - ZABBIX_HOSTNAME=formio-app
 
     - DB_HOST=formio-db-mongo
-    - DB_NAME=formio
 
-    - ADMIN_EMAIL=admin@example.com
-    - ADMIN_PASS=password
+    - ROOT_EMAIL=admin@example.com
+    - ROOT_PASS=password
 
+    - DEBUG_MODE=FALSE
+    - PROJECT_TEMPLATE=default
     networks:
       - proxy-tier
     restart: always
@@ -40,12 +41,13 @@ services:
 
   formio-db-mongo-backup:
     container_name: formio-db-mongo-backup
-    image: tiredofit/mongodb-backup
+    image: tiredofit/db-backup
     links:
      - formio-db-mongo
     volumes:
       - ./dbbackup:/backups
     environment:
+      - DB_TYPE=mongo
       - DB_HOST=formio-db-mongo
       - DB_DUMP_FREQ=1440
       - DB_DUMP_BEGIN=0000

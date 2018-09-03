@@ -1,0 +1,27 @@
+#!/usr/bin/with-contenv bash
+
+### Set Debug Mode
+if [ "$DEBUG_MODE" = "TRUE" ] || [ "$DEBUG_MODE" = "true" ]; then
+    set -x
+fi
+
+if [ ! -f /app/templates/project.default.json ] ; then cp -R /assets/templates/project.default.json /app/templates; fi;
+if [ ! -f /app/templates/config.template.js ] ; then cp -R /assets/templates/config.template.js /app/templates; fi;
+
+chown -R nodejs. /app
+
+### Sanity Check
+if [ -z ${DB_HOST} ] ; then echo "** [formio-api] DB_HOST is not defined! Exiting.."; exit 1; fi;
+
+DB_PORT=${DB_PORT:-"27017"}
+
+# Wait until mongo logs that it's ready (or timeout after 60s)
+COUNTER=0
+while !(nc -z $DB_HOST $DB_PORT) ; do
+    sleep 5
+    let COUNTER+=5
+    echo "** [formio-api] Waiting for MongoDB "$DB_HOST" to initialize... ($COUNTER seconds so far)"
+done
+
+mkdir -p /tmp/state
+touch /tmp/state/10-formio-api-init

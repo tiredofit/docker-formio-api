@@ -1,0 +1,70 @@
+{
+  "protocol": "FORMIO_PROTOCOL",
+  "appHost": "FORMIO_HOST",
+  "appPort": "FORMIO_PORT",
+  "mongo": "MONGO",
+  "mongoSecret": "MONGO_SECRET",
+  "jwt": {
+    "secret": "JWT_SECRET",
+    "expireTime": "JWT_EXPIRE_TIME"
+  },
+  "email": {
+    "type": "EMAIL_TYPE",
+    "username": "EMAIL_USER",
+    "password": "EMAIL_PASS",
+    "apiKey": "EMAIL_KEY"
+  },
+  "settings": {
+    "office365": {
+      "tenant": "O365_TENANT",
+      "clientId": "O365_CLIENT_ID",
+      "email": "O365_EMAIL",
+      "cert": "O365_CERT",
+      "thumbprint": "O365_THUMBPRINT"
+    },
+    "database": {
+      "mysql": {
+        "host": "MYSQL_HOST",
+        "port": "MYSQL_PORT",
+        "database": "MYSQL_DBNAME",
+        "user": "MYSQL_USER",
+        "password": "MYSQL_PASS"
+      },
+      "mssql": {
+        "host": "MSSQL_HOST",
+        "port": "MSSQL_PORT",
+        "database": "MSSQL_DBNAME",
+        "user": "MSSQL_USER",
+        "password": "MSSQL_PASS"
+      }
+    },
+    "email": {
+      "gmail": {
+        "auth": {
+          "user": "GMAIL_USER",
+          "pass": "GMAIL_PASS"
+        }
+      },
+      "smtp": {
+        "host": "SMTP_HOST",
+        "ssl": "SMTP_SSL",
+        "port": "SMTP_PORT",
+        "auth": {
+          "user": "SMTP_USER",
+          "pass": "SMTP_PASS"
+        }
+      }
+    }
+  },
+  "project": {
+    "template": "PROJECT_TEMPLATE",
+    "user": {
+      "form": "USER_FORM",
+      "loginForm": "USER_LOGIN_FORM"
+    },
+    "root": {
+      "email": "ROOT_EMAIL",
+      "password": "ROOT_PASS"
+    }
+  }
+}

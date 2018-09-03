@@ -1,3 +1,13 @@
+## 1.1 2018-09-03 Dave Conroy <dave at tiredofit dot ca>
+
+* Add versioning support for API and builder
+* Cleanup Startup Scripts (Waiting for Mongo)
+
+## 1.0 2018-08-21 Dave Conroy <dave at tiredofit dot ca>
+
+* Switch to Alpine base 
+* NodeJS 10
+
 ## 0.5 2017-12-01 Dave Conroy <dave at tiredofit dot ca>
 
 * Switched to Debian Stretch as base
