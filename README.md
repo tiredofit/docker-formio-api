@@ -1,11 +1,15 @@
-# tiredofit/formio-api
+# hub.docker.com/r/tiredofit/formio
+
+[![Build Status](https://img.shields.io/docker/build/tiredofit/formio.svg)](https://hub.docker.com/r/tiredofit/formio)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/formio.svg)](https://hub.docker.com/r/tiredofit/formio)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/formio.svg)](https://hub.docker.com/r/tiredofit/formio)
+[![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/formio.svg)](https://microbadger.com/images/tiredofit/formio)
 
 # Introduction
 
 This will build a container for [Formio API Server](https://www.form.io/) A form server based on NodeJS.
 
-This Container uses customized [Alpine](https://hub.docker.com/r/tiredofit/alpine) as a base image along with NodeJS 10.
-
+This Container uses customized [Alpine](https://hub.docker.com/r/tiredofit/alpine) as a base image along with NodeJS 12.
 
 [Changelog](CHANGELOG.md)
 
@@ -40,12 +44,12 @@ order to serve your pages. However, it will run just fine on it's own if you map
 
 # Installation
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/tiredofit/formio) and is the 
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/formio) and is the 
 recommended method of installation.
 
 
 ```bash
-docker pull tiredofit/formio-api
+docker pull tiredofit/formio
 ```
 
 # Quick Start
@@ -126,5 +130,4 @@ docker exec -it (whatever your container name is e.g. formio) bash
 # References
 
 * https://www.form.io/
-
 
