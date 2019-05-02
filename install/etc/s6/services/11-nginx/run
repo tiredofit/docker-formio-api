@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+while [ ! -f /tmp/state/10-formio-api ]
+do
+  sleep 1
+done
+
+
+if [ ! -f /tmp/state/11-nginx ]; then
+
+        mkdir -p /tmp/state/
+	echo 'Initialization Complete' >/tmp/state/11-nginx
+fi
+
+echo ''
+echo '** [nginx] Starting nginx'
+exec nginx
+
