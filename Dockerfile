@@ -1,4 +1,4 @@
-FROM tiredofit/nodejs/12:latest
+FROM tiredofit/nodejs:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Disable Build in Services
