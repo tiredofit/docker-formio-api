@@ -1,12 +1,12 @@
 FROM tiredofit/nodejs:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
-### Disable Build in Services
-    ENV FORMIO_VERSION=v1.45.0 \
-        FORMIO_CLIENT_VERSION=master \
-        ENABLE_SMTP=FALSE \
-        ENABLE_CRON=FALSE \
-        ZABBIX_HOSTNAME=formio-api-app
+### Set Defaults
+ENV FORMIO_VERSION=v1.61.0 \
+    FORMIO_CLIENT_VERSION=master \
+    ENABLE_SMTP=FALSE \
+    ENABLE_CRON=FALSE \
+    ZABBIX_HOSTNAME=formio-api-app
 
 ### Install Runtime Dependencies
 RUN set -x apk update && \
@@ -19,7 +19,6 @@ RUN set -x apk update && \
     apk add -t .formio-run-deps \
         expect \
         jq \
-        nginx \
         && \
     \
     sudo -u nodejs git clone -b $FORMIO_VERSION https://github.com/formio/formio.git /app/ && \
@@ -27,7 +26,7 @@ RUN set -x apk update && \
     \
     cd /app && \
     sudo -u nodejs npm install && \
-
+    \
 ### Misc & Cleanup
     mkdir -p /app/templates && \
     chown -R nodejs. /app && \
@@ -37,7 +36,7 @@ RUN set -x apk update && \
 WORKDIR /app/
 
 ### Networking Configuration
-EXPOSE 80 3001 
+EXPOSE 3001 
 
 ### Add Files
 ADD install /
