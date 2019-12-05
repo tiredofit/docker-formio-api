@@ -1,9 +1,9 @@
-# hub.docker.com/r/tiredofit/formio
+# hub.docker.com/r/tiredofit/formio-api
 
-[![Build Status](https://img.shields.io/docker/build/tiredofit/formio.svg)](https://hub.docker.com/r/tiredofit/formio)
-[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/formio.svg)](https://hub.docker.com/r/tiredofit/formio)
-[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/formio.svg)](https://hub.docker.com/r/tiredofit/formio)
-[![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/formio.svg)](https://microbadger.com/images/tiredofit/formio)
+[![Build Status](https://img.shields.io/docker/build/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
+[![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/formio-api.svg)](https://microbadger.com/images/tiredofit/formio-api)
 
 # Introduction
 
@@ -44,12 +44,12 @@ order to serve your pages. However, it will run just fine on it's own if you map
 
 # Installation
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/formio) and is the 
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/formio-api) and is the 
 recommended method of installation.
 
 
 ```bash
-docker pull tiredofit/formio
+docker pull tiredofit/formio-api
 ```
 
 # Quick Start
@@ -109,6 +109,8 @@ available options that can be used to customize your installation.
 | `SMTP_PASS` | SMTP password e.g. `password` |
 | `SMTP_PORT` |  SMTP Port |
 | `EMAIL_OVERRIDE` | Ignore all options and use this: `# example: {"transport":"smtp","settings":{"port":2525,"host":"smtp.mailtrap.io","auth":{"user":"23esdffd53ac","pass":"324csdfsdf989a"}}}` |
+
+
 ### Networking
 
 The following ports are exposed.
