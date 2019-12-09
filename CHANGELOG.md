@@ -1,3 +1,9 @@
+## 1.4.3 2019-12-09 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO API 1.62.0
+
+
 ## 1.4.2 2019-12-05 <dave at tiredofit dot ca>
 
    ### Added
