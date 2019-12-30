@@ -5,68 +5,73 @@ services:
     image: tiredofit/formio-api
     container_name: formio-api-app
     labels:
-      - traefik.enable=true
-      - traefik.frontend.rule=Host:formio.example.com
-      - traefik.port=80
-      - traefik.protocol=http
-      - traefik.docker.network=proxy
-      - traefik.backend=formio-api-app
+    - traefik.enable=true
+    - traefik.frontend.rule=Host:formio.example.com
+    - traefik.port=80
+    - traefik.protocol=http
+    - traefik.docker.network=proxy
+    - traefik.backend=formio-api-app
     volumes:
-      - ./templates:/app/templates
+    - ./templates:/app/templates
     environment:
-      - VIRTUAL_HOST=formio.example.com
-      - VIRTUAL_NETWORK=proxy
-      - VIRTUAL_PORT=3001
-      - LETSENCRYPT_HOST=formio.example.com
-      - LETSENCRYPT_EMAIL=email@example.com
+    - VIRTUAL_HOST=formio.example.com
+    - VIRTUAL_NETWORK=proxy
+    - VIRTUAL_PORT=3001
+    - LETSENCRYPT_HOST=formio.example.com
+    - LETSENCRYPT_EMAIL=email@example.com
 
-      - ZABBIX_HOSTNAME=formio-app
+    - ZABBIX_HOSTNAME=formio-app
 
-      - DB_HOST=formio-db-mongo
+    - DB_HOST=formio-db-mongo
 
-      - ROOT_EMAIL=admin@example.com
-      - ROOT_PASS=password
+    - ROOT_EMAIL=admin@example.com
+    - ROOT_PASS=password
 
-      - DEBUG_MODE=FALSE
-      - PROJECT_TEMPLATE=default
+    - DEBUG_MODE=FALSE
+    - PROJECT_TEMPLATE=default
     networks:
-      - proxy
-      - services
+    - proxy
+    - internal
+    - services
     restart: always
 
   formio-db-mongo:
     image: mongo
     container_name: formio-db-mongo
     volumes:
-      - ./db:/data/db
+    - ./db:/data/db
     command: mongod --smallfiles
     environment:
-      - ZABBIX_HOSTNAME=formio-db-mongo
+    - ZABBIX_HOSTNAME=formio-db-mongo
     networks:
-      - services
+    - internal
+    - services
     restart: unless-stopped 
 
   formio-db-mongo-backup:
     image: tiredofit/db-backup
     container_name: formio-db-mongo-backup
     links:
-      - formio-db-mongo
+    - formio-db-mongo
     volumes:
-      - ./dbbackup:/backups
+    - ./dbbackup:/backups
     environment:
-      - DB_TYPE=mongo
-      - DB_HOST=formio-db-mongo
-      - DB_DUMP_FREQ=1440
-      - DB_DUMP_BEGIN=0000
-      - DB_CLEANUP_TIME=8640
-      - MD5=TRUE
-      - COMPRESSION=GZ
+    - DB_TYPE=mongo
+    - DB_HOST=formio-db-mongo
+    - DB_DUMP_FREQ=1440
+    - DB_DUMP_BEGIN=0000
+    - DB_CLEANUP_TIME=8640
+    - MD5=TRUE
+    - COMPRESSION=GZ
     networks:
-      - services
+    - internal
+    - services
     restart: always
 
 networks:
   proxy:
     external: true
+  internal:
+    external: false
   services:
     external: true

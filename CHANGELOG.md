@@ -1,3 +1,14 @@
+## 1.5.0 2019-12-29 <dave at tiredofit dot ca>
+
+   ### Added
+      - Support for new tiredofit/alpine base image
+
+## 1.4.4 2019-12-11 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO API 1.63.2
+
+
 ## 1.4.3 2019-12-09 <dave at tiredofit dot ca>
 
    ### Added
