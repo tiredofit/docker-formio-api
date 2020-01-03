@@ -12,6 +12,6 @@ chown -R nodejs. /app
 sanity_var DB_HOST "Database Host"
 DB_PORT=${DB_PORT:-"27017"}
 
-db_check mongo
+db_ready mongo
 
 liftoff
