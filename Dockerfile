@@ -2,7 +2,7 @@ FROM tiredofit/nodejs:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Set Defaults
-ENV FORMIO_VERSION=v1.63.2 \
+ENV FORMIO_VERSION=v1.63.11 \
     FORMIO_CLIENT_VERSION=master \
     ENABLE_SMTP=FALSE \
     ENABLE_CRON=FALSE \

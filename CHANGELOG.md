@@ -1,3 +1,33 @@
+## 1.5.5 2020-03-04 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Remove last trace of nginx logration scripts
+
+
+## 1.5.4 2020-02-12 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO 1.63.10
+
+
+## 1.5.3 2020-01-29 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO API 1.63.9
+
+
+## 1.5.2 2020-01-10 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO 1.63.7
+
+
+## 1.5.1 2020-01-02 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Additional changes to support new tiredofit/alpine base image
+
+
 ## 1.5.0 2019-12-29 <dave at tiredofit dot ca>
 
    ### Added
