@@ -1,5 +1,5 @@
-var APP_URL = '{{ protocol }}://{{ host }}:{{ port }}';
-var API_URL = '{{ protocol }}://{{ host }}:{{ port }}';
+var APP_URL = '{{ protocol }}://{{ host }}';
+var API_URL = '{{ protocol }}://{{ host }}';
 
 // Parse query string
 var query = {};
@@ -14,7 +14,7 @@ angular.module('formioApp').constant('AppConfig', {
   appUrl: appUrl,
   apiUrl: apiUrl,
   forms: {
-    userForm: appUrl + '/{{ userForm }}',
-    userLoginForm: appUrl + '/{{ userLoginForm }}'
+    userForm: appUrl + '/user',
+    userLoginForm: appUrl + '/user/login'
   }
 });

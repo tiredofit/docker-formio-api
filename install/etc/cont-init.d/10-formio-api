@@ -1,17 +1,18 @@
 #!/usr/bin/with-contenv bash
 
-for s in /assets/functions/*; do source $s; done
+source /assets/functions/00-container
+prepare_service
 PROCESS_NAME="formio-api"
-
-if [ ! -f /app/templates/project.default.json ] ; then cp -R /assets/templates/project.default.json /app/templates; fi;
-if [ ! -f /app/templates/config.template.js ] ; then cp -R /assets/templates/config.template.js /app/templates; fi;
-
-chown -R nodejs. /app
 
 ### Sanity Check
 sanity_var DB_HOST "Database Host"
-DB_PORT=${DB_PORT:-"27017"}
-
+sanity_var FORMIO_HOST "FormIO Hostname"
 db_ready mongo
+
+configure_url
+
+if [ ! -f /app/templates/project.default.json ] ; then cp -R /assets/templates/project.default.json /app/templates; fi;
+if [ ! -f /app/templates/config.template.js ] ; then cp -R /assets/templates/config.template.js /app/templates; fi;
+chown -R nodejs: /app
 
 liftoff

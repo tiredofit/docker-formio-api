@@ -2,24 +2,22 @@ FROM tiredofit/nodejs:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Set Defaults
-ENV FORMIO_VERSION=v1.63.11 \
+ENV FORMIO_VERSION=v1.79.0 \
     FORMIO_CLIENT_VERSION=master \
     ENABLE_SMTP=FALSE \
     ENABLE_CRON=FALSE \
     ZABBIX_HOSTNAME=formio-api-app
 
 ### Install Runtime Dependencies
-RUN set -x apk update && \
+RUN set -x && \
+    apk update && \
+    apk upgrade && \
     apk add -t .formio-build-deps \
-        git \
-        g++ \
-        make \
-        python \
-        && \
-    apk add -t .formio-run-deps \
-        expect \
-        jq \
-        && \
+                git \
+                g++ \
+                make \
+                python \
+                && \
     \
     sudo -u nodejs git clone -b $FORMIO_VERSION https://github.com/formio/formio.git /app/ && \
     sudo -u nodejs git clone -b $FORMIO_CLIENT_VERSION https://github.com/formio/formio-app-formio.git /app/client && \
@@ -40,4 +38,3 @@ EXPOSE 3001
 
 ### Add Files
 ADD install /
-

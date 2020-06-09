@@ -94,7 +94,7 @@ module.exports = function(formio, items, done) {
       }
 
       // Change the project configuration.
-      util.log('Configuring client...'.green);
+      util.log('Configuring the client'.green);
       const config = fs.readFileSync(templateFile);
       const newConfig = nunjucks.renderString(config.toString(), {
         protocol: formio.config.protocol || 'http',
@@ -157,7 +157,7 @@ module.exports = function(formio, items, done) {
       }
 
       // Get the form.io service.
-      util.log('Importing template...'.green);
+      util.log('Importing template'.green);
       const importer = require('./src/templates/import')({formio: formio});
       importer.template(template, function(err, template) {
         if (err) {
@@ -175,7 +175,9 @@ module.exports = function(formio, items, done) {
      * @param done
      */
     createRootUser: function(done) {
+        util.log('Checking if Root account exists')
       if (!items.user) {
+        util.log('Root account already exists')
         return done();
       }
       util.log('Creating root user account...'.green);
@@ -207,7 +209,7 @@ module.exports = function(formio, items, done) {
     }
   };
 
-  util.log('Installing...');
+  util.log('Setting up FormIO');
   async.series([
     steps.configureClient,
     steps.importTemplate,

@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+configure_url() {
+		print_notice "Setting API and Manager Application to ${FORMIO_PROTOCOL}://${FORMIO_HOST}/"
+}

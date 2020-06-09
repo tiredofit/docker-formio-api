@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+export DB_PORT=${DB_PORT:-"27017"}
