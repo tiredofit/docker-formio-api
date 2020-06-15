@@ -2,7 +2,7 @@ FROM tiredofit/nodejs:latest
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Set Defaults
-ENV FORMIO_VERSION=v1.79.0 \
+ENV FORMIO_VERSION=v1.85.0 \
     FORMIO_CLIENT_VERSION=master \
     ENABLE_SMTP=FALSE \
     ENABLE_CRON=FALSE \
@@ -24,7 +24,7 @@ RUN set -x && \
     \
     cd /app && \
     sudo -u nodejs npm install && \
-
+    \
 ### Misc & Cleanup
     mkdir -p /app/templates && \
     chown -R nodejs. /app && \
@@ -38,3 +38,4 @@ EXPOSE 3001
 
 ### Add Files
 ADD install /
+

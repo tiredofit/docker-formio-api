@@ -1,35 +1,24 @@
 #!/usr/bin/with-contenv bash
 
-source /assets/functions/00-container
-prepare_service
+for s in /assets/functions/*; do source $s; done
 PROCESS_NAME="formio-api"
 
 check_container_initialized
 check_service_initialized init
-liftoff
-
-### Set Defaults
-export DB_PORT=${DB_PORT:-"27017"}
+if [ ! -z ${DB_USER} ] ; then DB_CREDSTRING=$DB_USER'@'; fi;
+if [ ! -z ${DB_PASS} ] ; then DB_CREDSTRING=$DB_USER':'$DB_PASS'@'; fi;
 export DB_SECRET=${DB_SECRET:-"secret"}
+export FORMIO_MANAGER_HOST=${FORMIO_MANAGER_HOST:-"${FORMIO_HOST}"}
+export FORMIO_PROTOCOL=${FORMIO_PROTOCOL:-"https"}
+if [ '$FORMIO_PROTOCOL' = 'http' ] ; then export FORMIO_PORT=80; else export FORMIO_PORT=443; fi;
 export JWT_SECRET=${JWT_SECRET:-"secret"}
 export JWT_EXPIRE_TIME=${JWT_EXPIRE_TIME:-"240"}
+export PROJECT_TEMPLATE=${PROJECT_TEMPLATE:-"default"}
 export USER_FORM=${USER_FORM:-"user"}
 export USER_LOGIN_FORM=${USER_LOGIN_FORM:-"admin/login"}
 export ROOT_EMAIL=${ROOT_EMAIL:-"admin@example.com"}
 export ROOT_PASS=${ROOT_PASS:-"password"}
-export PROJECT_TEMPLATE=${PROJECT_TEMPLATE:-"default"}
-if [ -z ${VIRTUAL_HOST} ] ; then export VIRTUAL_HOST=localhost; fi;
-export FORMIO_HOST=${FORMIO_HOST:-$VIRTUAL_HOST}
-export FORMIO_PROTOCOL=${FORMIO_PROTOCOL:-"https"}
-if [ ! -z ${LETSENCRYPT_HOST} ] ; then export FORMIO_PROTOCOL=https; fi;
-export DOMAIN=${DOMAIN:-$FORMIO_PROTOCOL'://'$VIRTUAL_HOST}
-if [ '$FORMIO_PROTOCOL' = 'http' ] ; then export FORMIO_PORT=80; else export FORMIO_PORT=443; fi;
-#export FORMIO_PORT=${FORMIO_PORT:-3001}
-
-if [ ! -z ${DB_USER} ] ; then DB_CREDSTRING=$DB_USER'@'; exit 1; fi;
-if [ ! -z ${DB_PASS} ] ; then DB_CREDSTRING=$DB_USER':'$DB_PASS'@'; exit 1; fi;
 export MONGO=${DB_STRING:-'mongodb://'$DB_CRED_STRING$DB_HOST':'$DB_PORT'/'$PROJECT_TEMPLATE}
-
 liftoff
 
 print_info "Starting Formio API ${FORMIO_VERSION}"

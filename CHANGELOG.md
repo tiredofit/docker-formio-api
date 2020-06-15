@@ -1,3 +1,23 @@
+## 1.5.8 2020-06-15 <dave at tiredofit dot ca>
+
+   ### Added
+      - Formio API 1.8.5
+
+
+## 1.5.7 2020-05-26 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO 1.79.0
+      - Added FORMIO_MANAGER_HOST
+      - Fixed Client application URL mangling upstream
+      - Moved Env vars to functions file
+
+## 1.5.6 2020-05-01 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO API 1.76.0
+
+
 ## 1.5.5 2020-03-04 <dave at tiredofit dot ca>
 
    ### Changed

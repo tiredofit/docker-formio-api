@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 
+export DB_PORT=${DB_PORT:-"27017"}
+
 configure_url() {
 		print_notice "Setting API and Manager Application to ${FORMIO_PROTOCOL}://${FORMIO_HOST}/"
 }
