@@ -1,3 +1,10 @@
+## 1.6.1 2020-09-12 <dave at tiredofit dot ca>
+
+   ### Added
+      - Use Python3 when building
+      - FormIO 1.9.0.9
+
+
 ## 1.6.0 2020-07-02 <dave at tiredofit dot ca>
 
    ### Added
