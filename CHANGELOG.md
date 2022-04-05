@@ -1,3 +1,10 @@
+## 1.7.1 2022-04-05 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Switch to packaged node
+      - Add sendgrid module
+
+
 ## 1.7.0 2022-04-05 <dave at tiredofit dot ca>
 
    ### Added
