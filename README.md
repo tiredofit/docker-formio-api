@@ -1,11 +1,10 @@
-# hub.docker.com/r/tiredofit/formio-api
+# github.com/tiredofit/docker-formio-api
 
-[![Build Status](https://img.shields.io/docker/build/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
 [![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
 [![Docker Stars](https://img.shields.io/docker/stars/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
 [![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/formio-api.svg)](https://microbadger.com/images/tiredofit/formio-api)
 
-## Introduction
+## About
 
 This will build a container for [Formio API Server](https://www.form.io/) A form server based on NodeJS.
 
@@ -13,7 +12,7 @@ This Container uses customized [Alpine](https://hub.docker.com/r/tiredofit/alpin
 
 [Changelog](CHANGELOG.md)
 
-## Authors
+## Maintainer
 
 - [Dave Conroy](https://github.com/tiredofit)
 
@@ -34,7 +33,7 @@ This Container uses customized [Alpine](https://hub.docker.com/r/tiredofit/alpin
   - [Shell Access](#shell-access)
 - [References](#references)
 
-## Prerequisites
+## Prerequisites and Assumptions
 
  - This image assumes that you are using a reverse proxy such as [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) and
 optionally the [Let's Encrypt Proxy Companion @

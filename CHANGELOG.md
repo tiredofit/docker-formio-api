@@ -1,3 +1,9 @@
+## 1.7.0 2022-04-05 <dave at tiredofit dot ca>
+
+   ### Added
+      - FormIO 2.4.0
+
+
 ## 1.6.1 2020-09-12 <dave at tiredofit dot ca>
 
    ### Added

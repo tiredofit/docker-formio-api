@@ -1,12 +1,12 @@
-FROM tiredofit/nodejs:latest
-LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
+FROM docker.io/tiredofit/nodejs:latest
+LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ### Set Defaults
-ENV FORMIO_VERSION=v1.90.9 \
+ENV FORMIO_VERSION=v2.40.0 \
     FORMIO_CLIENT_VERSION=master \
-    ENABLE_SMTP=FALSE \
-    ENABLE_CRON=FALSE \
-    ZABBIX_HOSTNAME=formio-api-app
+    CONTAINER_ENABLE_MESSAGING=FALSE \
+    CONTAINER_ENABLE_SCHEDULING=FALSE \
+    CONTAINER_NAME=formio-api-app
 
 ### Install Runtime Dependencies
 RUN set -x && \

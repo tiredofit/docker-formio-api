@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 source /assets/functions/00-container
 prepare_service
@@ -23,6 +23,6 @@ export ROOT_PASS=${ROOT_PASS:-"password"}
 export MONGO=${DB_STRING:-'mongodb://'$DB_CRED_STRING$DB_HOST':'$DB_PORT'/'$PROJECT_TEMPLATE}
 liftoff
 
-print_info "Starting Formio API ${FORMIO_VERSION}"
+print_start "Starting Formio API ${FORMIO_VERSION}"
 cd /app
 exec sudo -E -u nodejs HOME=/app npm start

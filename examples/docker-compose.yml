@@ -20,7 +20,7 @@ services:
     - LETSENCRYPT_HOST=formio.example.com
     - LETSENCRYPT_EMAIL=email@example.com
 
-    - ZABBIX_HOSTNAME=formio-app
+    - CONTAINER_NAME=formio-app
 
     - DB_HOST=formio-db-mongo
 
@@ -42,7 +42,7 @@ services:
     - ./db:/data/db
     command: mongod --smallfiles
     environment:
-    - ZABBIX_HOSTNAME=formio-db-mongo
+    - CONTAINER_NAME=formio-db-mongo
     networks:
     - internal
     - services
