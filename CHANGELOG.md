@@ -1,3 +1,12 @@
+## 1.7.2 2022-05-24 <dave at tiredofit dot ca>
+
+   ### Added
+      - Alpine 3.16 base
+
+   ### Changed
+      - FormIO 2.4.1
+
+
 ## 1.7.1 2022-04-05 <dave at tiredofit dot ca>
 
    ### Changed

@@ -1,8 +1,8 @@
-FROM docker.io/tiredofit/alpine:3.15
+FROM docker.io/tiredofit/alpine:3.16
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ### Set Defaults
-ENV FORMIO_VERSION=v2.4.0 \
+ENV FORMIO_VERSION=v2.4.1 \
     FORMIO_CLIENT_VERSION=master \
     CONTAINER_ENABLE_MESSAGING=FALSE \
     CONTAINER_ENABLE_SCHEDULING=FALSE \
