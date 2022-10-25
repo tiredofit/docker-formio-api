@@ -2,7 +2,6 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
 [![Docker Stars](https://img.shields.io/docker/stars/tiredofit/formio-api.svg)](https://hub.docker.com/r/tiredofit/formio-api)
-[![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/formio-api.svg)](https://microbadger.com/images/tiredofit/formio-api)
 
 ## About
 
