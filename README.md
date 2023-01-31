@@ -48,7 +48,7 @@ recommended method of installation.
 
 
 ```bash
-docker pull tiredofit/formio-api
+docker pull docker.io/tiredofdit/formio-api
 ```
 
 ### Quick Start

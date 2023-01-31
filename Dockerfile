@@ -46,5 +46,5 @@ WORKDIR /app/
 EXPOSE 3001 
 
 ### Add Files
-ADD install /
+COPY install /
 
